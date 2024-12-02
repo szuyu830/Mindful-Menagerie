@@ -92,6 +92,50 @@ const scoring = {
     question9: { A: ["dog"], B: ["dolphin","wolf"], C: ["dolphin","fox"], D: ["wolf"] },
     question10: { A: ["lion"], B: ["bear"], C: ["rabbit"], D: ["owl"] },
 };
+const animalDetails = {
+  lion: {
+    name: "獅子",
+    description: "你擁有無與倫比的領導力和自信，喜歡掌控全局，總能成為團隊的核心人物。"
+  },
+  cat: {
+    name: "貓",
+    description: "你獨立、敏銳且充滿好奇心，擅長發現生活中的細節並享受自己的空間。"
+  },
+  dolphin: {
+    name: "海豚",
+    description: "你充滿智慧和幽默感，善於社交，總能為周圍的人帶來歡樂和靈感。"
+  },
+  eagle: {
+    name: "老鷹",
+    description: "你目標明確，擁有高瞻遠矚的眼光，總能找到最有效的路徑實現自己的理想。"
+  },
+  bear: {
+    name: "熊",
+    description: "你溫暖且可靠，為人穩重，有強大的安全感，面對挑戰時能展現無比的力量。"
+  },
+  rabbit: {
+    name: "兔子",
+    description: "你溫和且敏感，適應能力強，對周遭的變化總能快速反應，是他人眼中的和平使者。"
+  },
+  fox: {
+    name: "狐狸",
+    description: "你聰明機智，善於分析情況，總能快速找到解決問題的方法，是策略高手。"
+  },
+  dog: {
+    name: "狗",
+    description: "你忠誠且真誠，重視人際關係，能夠為周圍的人提供支持和溫暖。"
+  },
+  owl: {
+    name: "貓頭鷹",
+    description: "你理性且深思熟慮，擅長洞察事物的本質，總能給出獨到的見解。"
+  },
+  wolf: {
+    name: "狼",
+    description: "你有團隊精神，且擁有無與倫比的適應力，喜歡與志同道合的人一起實現目標。"
+  }
+};
+
+
 
  const scores = { lion: 0, cat: 0, dolphin: 0 ,eagle:0 ,bear:0 ,rabbit:0 ,fox:0 ,dog:0 ,owl:0 ,wolf:0 };
 
@@ -141,6 +185,16 @@ document.getElementById('submitQuiz').addEventListener('click', () => {
   )[0];
 
   // 顯示結果
-  document.getElementById('result').textContent = `你的動物型人格是：${result}`;
-  console.log(`最終分數：`, finalScores);
+  const details = animalDetails[result];
+  if (details) {
+    document.getElementById('animalName').textContent = `你的動物型人格是：${details.name}`;
+    document.getElementById('animalDescription').textContent = details.description;
+
+    // 顯示結果容器
+    const resultContainer = document.getElementById('resultContainer');
+    resultContainer.style.display = 'block';
+
+    // 滾動到結果位置
+    resultContainer.scrollIntoView({ behavior: 'smooth' });
+  }
 });
