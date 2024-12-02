@@ -78,3 +78,50 @@ function fadeIn(el, display) {
         }
     })();
 };
+
+// 監聽所有按鈕的點擊事件，並將選擇的答案記錄到 Local Storage
+// 監聽所有按鈕點擊
+document.querySelectorAll('.btn').forEach(button => {
+  button.addEventListener('click', (event) => {
+    event.preventDefault(); // 防止跳轉
+
+    // 獲取題號和答案
+    const question = event.target.dataset.question;
+    const answer = event.target.dataset.answer;
+
+    // 儲存到 Local Storage
+    const userAnswers = JSON.parse(localStorage.getItem('userAnswers')) || {};
+    userAnswers[`question${question}`] = answer;
+    localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+
+    // 提示使用者選擇已記錄（可選）
+    console.log(`已記錄：第 ${question} 題選擇 ${answer}`);
+  });
+});
+
+
+//計算結果
+// 定義計分邏輯
+const scoring = {
+  question1: { A: ["rabbit","eagle","wolf"], B: ["owl","eagle","wolf"], C: ["rabbit","eagle","cat"], D: ["lion"] },
+  question2: { A: "lion", B: "eagle", C: "cat", D: "dog" },
+
+};
+
+document.getElementById('submitQuiz').addEventListener('click', () => {
+  const userAnswers = JSON.parse(localStorage.getItem('userAnswers')) || {};
+  const scores = { lion: 0, eagle: 0, cat: 0, dog: 0 };
+
+  Object.entries(userAnswers).forEach(([question, answer]) => {
+    const animal = scoring[question][answer];
+    if (animal) scores[animal]++;
+  });
+
+  // 找出最高分的動物型人格
+  const result = Object.entries(scores).reduce((max, current) => 
+    current[1] > max[1] ? current : max
+  )[0];
+
+  // 顯示結果
+  document.getElementById('result').textContent = `你的動物型人格是：${result}`;
+});
