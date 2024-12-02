@@ -79,6 +79,22 @@ function fadeIn(el, display) {
     })();
 };
 
+// 定義計分邏輯
+const scoring = {
+  question1: { A: ["rabbit","eagle","wolf"], B: ["owl","eagle","wolf"], C: ["rabbit","eagle","cat"], D: ["lion"] },
+  question2: { A: ["cat"], B: ["dolphin","lion"], C: ["bear"], D: ["dolphin","fox"] },
+  question3: { A: ["owl"], B: ["eagle","wolf"], C:["dolphin","fox"], D: ["lion"] },  
+  question4: { A: ["lion","wolf"], B: ["eagle"], C: ["wolf"], D: ["fox","owl"] },
+    question5: { A: ["fox"], B: ["bear","rabbit","dog"], C: ["bear"], D: ["dog"] },
+    question6: { A: ["dog"], B: ["eagle"], C: ["dolphin","cat"], D: ["fox"] },
+    question7: { A: ["lion"], B: ["owl","fox"], C: ["dog"], D: ["dolphin"] },
+    question8: { A: ["cat"], B: ["owl"], C: ["rabbit"], D: ["rabbit","bear"] },
+    question9: { A: ["dog"], B: ["dolphin","wolf"], C: ["dolphin","fox"], D: ["wolf"] },
+    question10: { A: ["lion"], B: ["bear"], C: ["rabbit"], D: ["owl"] },
+};
+
+ const scores = { lion: 0, cat: 0, dolphin: 0 ,eagle:0 ,bear:0 ,rabbit:0 ,fox:0 ,dog:0 ,owl:0 ,wolf:0 };
+
 // 監聽所有按鈕的點擊事件，並將選擇的答案記錄到 Local Storage
 // 監聽所有按鈕點擊
 document.querySelectorAll('.btn').forEach(button => {
@@ -94,41 +110,37 @@ document.querySelectorAll('.btn').forEach(button => {
     userAnswers[`question${question}`] = answer;
     localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
 
-    // 提示使用者選擇已記錄（可選）
-    console.log(`已記錄：第 ${question} 題選擇 ${answer}`);
+    // 根據答案加分
+    const animalsToScore = scoring[question][answer];
+    animalsToScore.forEach(animal => {
+      scores[animal] = (scores[animal] || 0) + 1;
+    });
+
+    console.log(`當前分數：`, scores);
   });
 });
 
 
 //計算結果
-// 定義計分邏輯
-const scoring = {
-  question1: { A: ["rabbit","eagle","wolf"], B: ["owl","eagle","wolf"], C: ["rabbit","eagle","cat"], D: ["lion"] },
-  question2: { A: ["cat"], B: ["dolphin","lion"], C: ["bear"], D: ["dolphin","fox"] },
-  question3: { A: ["owl"], B: ["eagle","wolf"], C:["dolphin","fox"], D: ["lion"] },  
-  question4: { A: ["lion","wolf"], B: ["eagle"], C: ["wolf"], D: ["fox","owl"] },
-    question5: { A: ["fox"], B: ["bear","rabbit","dog"], C: ["bear"], D: ["dog"] },
-    question6: { A: ["dog"], B: ["eagle"], C: ["dolphin","cat"], D: ["fox"] },
-    question7: { A: ["lion"], B: ["owl","fox"], C: ["dog"], D: ["dolphin"] },
-    question8: { A: ["cat"], B: ["owl"], C: ["rabbit"], D: ["rabbit","bear"] },
-    question9: { A: ["dog"], B: ["dolphin","wolf"], C: ["dolphin","fox"], D: ["wolf"] },
-    question10: { A: ["lion"], B: ["bear"], C: ["rabbit"], D: ["owl"] },
-};
-
 document.getElementById('submitQuiz').addEventListener('click', () => {
+  // 從 Local Storage 獲取回答
   const userAnswers = JSON.parse(localStorage.getItem('userAnswers')) || {};
-  const scores = { lion: 0, eagle: 0, cat: 0, dog: 0 };
 
+  // 再次計算分數（避免多次點擊時重複加分）
+  const finalScores = { ...scores };
   Object.entries(userAnswers).forEach(([question, answer]) => {
-    const animal = scoring[question][answer];
-    if (animal) scores[animal]++;
+    const animalsToScore = scoring[question][answer];
+    animalsToScore.forEach(animal => {
+      finalScores[animal] = (finalScores[animal] || 0) + 1;
+    });
   });
 
   // 找出最高分的動物型人格
-  const result = Object.entries(scores).reduce((max, current) => 
+  const result = Object.entries(finalScores).reduce((max, current) => 
     current[1] > max[1] ? current : max
   )[0];
 
   // 顯示結果
   document.getElementById('result').textContent = `你的動物型人格是：${result}`;
+  console.log(`最終分數：`, finalScores);
 });
