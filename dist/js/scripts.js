@@ -104,8 +104,15 @@ document.querySelectorAll('.btn').forEach(button => {
 // 定義計分邏輯
 const scoring = {
   question1: { A: ["rabbit","eagle","wolf"], B: ["owl","eagle","wolf"], C: ["rabbit","eagle","cat"], D: ["lion"] },
-  question2: { A: "lion", B: "eagle", C: "cat", D: "dog" },
-
+  question2: { A: ["cat"], B: ["dolphin","lion"], C: ["bear"], D: ["dolphin","fox"] },
+  question3: { A: ["owl"], B: ["eagle","wolf"], C:["dolphin","fox"], D: ["lion"] },  
+  question4: { A: ["lion","wolf"], B: ["eagle"], C: ["wolf"], D: ["fox","owl"] },
+    question5: { A: ["fox"], B: ["bear","rabbit","dog"], C: ["bear"], D: ["dog"] },
+    question6: { A: ["dog"], B: ["eagle"], C: ["dolphin","cat"], D: ["fox"] },
+    question7: { A: ["lion"], B: ["owl","fox"], C: ["dog"], D: ["dolphin"] },
+    question8: { A: ["cat"], B: ["owl"], C: ["rabbit"], D: ["rabbit","bear"] },
+    question9: { A: ["dog"], B: ["dolphin","wolf"], C: ["dolphin","fox"], D: ["wolf"] },
+    question10: { A: ["lion"], B: ["bear"], C: ["rabbit"], D: ["owl"] },
 };
 
 document.getElementById('submitQuiz').addEventListener('click', () => {
