@@ -194,6 +194,26 @@ document.getElementById('submitQuiz').addEventListener('click', () => {
     const resultContainer = document.getElementById('resultContainer');
     resultContainer.style.display = 'block';
 
+  // 保留 href 的原有功能，不使用 preventDefault
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+       
+
+        // 延遲執行 scrollIntoView
+        setTimeout(() => {
+            const targetId = this.getAttribute('href').substring(1); // 獲取目標 ID
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        }, 0); // 延遲 0 毫秒，讓瀏覽器完成 href 跳轉
+    });
+});
+
+
     // 滾動到結果位置
     resultContainer.scrollIntoView({ behavior: 'smooth' });
   }
