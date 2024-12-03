@@ -38,6 +38,24 @@ window.addEventListener('DOMContentLoaded', event => {
             menuToggleTimes.classList.add('fa-bars');
         }
     }
+ // 保留 href 的原有功能，不使用 preventDefault
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+       
+
+        // 延遲執行 scrollIntoView
+        setTimeout(() => {
+            const targetId = this.getAttribute('href').substring(1); // 獲取目標 ID
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        }, 0); // 延遲 0 毫秒，讓瀏覽器完成 href 跳轉
+    });
+});
 
     // Scroll to top button appear
     document.addEventListener('scroll', () => {
