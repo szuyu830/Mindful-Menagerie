@@ -38,25 +38,7 @@ window.addEventListener('DOMContentLoaded', event => {
             menuToggleTimes.classList.add('fa-bars');
         }
     }
- // 保留 href 的原有功能，不使用 preventDefault
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-       
-
-        // 延遲執行 scrollIntoView
-        setTimeout(() => {
-            const targetId = this.getAttribute('href').substring(1); // 獲取目標 ID
-            const targetElement = document.getElementById(targetId);
-
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        }, 0); // 延遲 0 毫秒，讓瀏覽器完成 href 跳轉
-    });
-});
-
+ 
     // Scroll to top button appear
     document.addEventListener('scroll', () => {
         const scrollToTop = document.body.querySelector('.scroll-to-top');
@@ -159,13 +141,13 @@ const animalDetails = {
 
 // 監聽所有按鈕的點擊事件，並將選擇的答案記錄到 Local Storage
 // 監聽所有按鈕點擊
-document.querySelectorAll('.btn').forEach(button => {
-  button.addEventListener('click', (event) => {
-    event.preventDefault(); // 防止跳轉
-
+// 選項按鈕的點擊事件
+document.querySelectorAll('.btn[data-question]').forEach(button => {
+  button.addEventListener('click', event => {
+    // 防止瀏覽器完全攔截事件，保留 href 跳轉功能
     // 獲取題號和答案
-    const question = event.target.dataset.question;
-    const answer = event.target.dataset.answer;
+    const question = event.target.getAttribute('data-question');
+    const answer = event.target.getAttribute('data-answer');
 
     // 儲存到 Local Storage
     const userAnswers = JSON.parse(localStorage.getItem('userAnswers')) || {};
@@ -173,7 +155,7 @@ document.querySelectorAll('.btn').forEach(button => {
     localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
 
     // 根據答案加分
-    const animalsToScore = scoring[question][answer];
+    const animalsToScore = scoring[question][answer] || [];
     animalsToScore.forEach(animal => {
       scores[animal] = (scores[animal] || 0) + 1;
     });
