@@ -11116,3 +11116,7 @@ footer.footer .social-link:hover {
 html {
     scroll-behavior: smooth;
 }
+.bg-custom {
+    background-color: #F9E7E5;
+}
+
