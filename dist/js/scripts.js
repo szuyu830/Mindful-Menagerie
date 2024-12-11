@@ -203,7 +203,7 @@ document.getElementById('submitQuiz').addEventListener('click', () => {
     const imageElement = document.getElementById("animalImage");
     imageElement.src = animal.image;
     imageElement.alt = animal.name;
-  
+  }
 
 
     // 顯示結果容器
