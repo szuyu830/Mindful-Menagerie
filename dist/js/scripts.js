@@ -200,7 +200,7 @@ document.getElementById('submitQuiz').addEventListener('click', () => {
   if (details) {
     document.getElementById('animalName').textContent = `你的動物型人格是：${details.name}`;
     document.getElementById('animalDescription').textContent = details.description;
-    document.getElementById('animalImage').textContent = details.image;
+    
     
 
 
