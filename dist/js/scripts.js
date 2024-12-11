@@ -201,8 +201,8 @@ document.getElementById('submitQuiz').addEventListener('click', () => {
     document.getElementById('animalName').textContent = `你的動物型人格是：${details.name}`;
     document.getElementById('animalDescription').textContent = details.description;
     const imageElement = document.getElementById("animalImage");
-    imageElement.src = animal.image;
-    imageElement.alt = animal.name;
+    imageElement.src = details.image;
+    imageElement.alt = details.name;
   }
 
 
