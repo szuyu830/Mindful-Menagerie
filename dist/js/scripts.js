@@ -101,7 +101,7 @@ const animalDetails = {
   cat: {
     name: "貓",
     description: "你獨立、敏銳且充滿好奇心，擅長發現生活中的細節並享受自己的空間。",
-    image:"assets/img/cat.png"  
+    image:"assets/img/cat_hair_long.png"  
       
   },
   dolphin: {
@@ -132,7 +132,7 @@ const animalDetails = {
   dog: {
     name: "狗",
     description: "你忠誠且真誠，重視人際關係，能夠為周圍的人提供支持和溫暖。",
-      image:"assets/img/dog.png"  
+      image:"assets/img/youkai_jinmenken.png"  
   },
   owl: {
     name: "貓頭鷹",
