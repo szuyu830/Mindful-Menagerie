@@ -107,7 +107,7 @@ const animalDetails = {
   dolphin: {
     name: "海豚",
     description: "你充滿智慧和幽默感，善於社交，總能為周圍的人帶來歡樂和靈感。",
-      image:"assets/img/dolphin.png"  
+      image:"assets/img/dolphin.jpg"  
   },
   eagle: {
     name: "老鷹",
