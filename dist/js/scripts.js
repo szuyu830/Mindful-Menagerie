@@ -96,53 +96,53 @@ const animalDetails = {
   lion: {
     name: "獅子",
     description: "你擁有無與倫比的領導力和自信，喜歡掌控全局，總能成為團隊的核心人物。",
-    image:"lion.png"  
+    image:"assets/img/lion.png"  
   },
   cat: {
     name: "貓",
     description: "你獨立、敏銳且充滿好奇心，擅長發現生活中的細節並享受自己的空間。",
-    image:"cat.png"  
+    image:"assets/img/cat.png"  
       
   },
   dolphin: {
     name: "海豚",
     description: "你充滿智慧和幽默感，善於社交，總能為周圍的人帶來歡樂和靈感。",
-      image:"dolphin.png"  
+      image:"assets/img/dolphin.png"  
   },
   eagle: {
     name: "老鷹",
     description: "你目標明確，擁有高瞻遠矚的眼光，總能找到最有效的路徑實現自己的理想。",
-      image:"eagle.png"  
+      image:"assets/img/eagle.png"  
   },
   bear: {
     name: "熊",
     description: "你溫暖且可靠，為人穩重，有強大的安全感，面對挑戰時能展現無比的力量。",
-      image:"bear.png"  
+      image:"assets/img/bear.png"  
   },
   rabbit: {
     name: "兔子",
     description: "你溫和且敏感，適應能力強，對周遭的變化總能快速反應，是他人眼中的和平使者。",
-      image:"rabbit.png"  
+      image:"assets/img/rabbit.png"  
   },
   fox: {
     name: "狐狸",
     description: "你聰明機智，善於分析情況，總能快速找到解決問題的方法，是策略高手。",
-      image:"fox.png"  
+      image:"assets/img/fox.png"  
   },
   dog: {
     name: "狗",
     description: "你忠誠且真誠，重視人際關係，能夠為周圍的人提供支持和溫暖。",
-      image:"dog.png"  
+      image:"assets/img/dog.png"  
   },
   owl: {
     name: "貓頭鷹",
     description: "你理性且深思熟慮，擅長洞察事物的本質，總能給出獨到的見解。",
-      image:"owl.png"  
+      image:"assets/img/owl.png"  
   },
   wolf: {
     name: "狼",
     description: "你有團隊精神，且擁有無與倫比的適應力，喜歡與志同道合的人一起實現目標。",
-      image:"wolf.png"  
+      image:"assets/img/wolf.png"  
   }
 };
 
@@ -200,7 +200,10 @@ document.getElementById('submitQuiz').addEventListener('click', () => {
   if (details) {
     document.getElementById('animalName').textContent = `你的動物型人格是：${details.name}`;
     document.getElementById('animalDescription').textContent = details.description;
-    document.getElementById('animalImage').textContent = details.image; 
+      
+    // 設定圖片路徑和替代文字
+  const animalImage = document.getElementById('animalImage');
+  animalImage.src = details.image; // 設定圖片路徑
     
     
 
