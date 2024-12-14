@@ -3,6 +3,42 @@
 * Copyright 2013-2023 Start Bootstrap
 * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-stylish-portfolio/blob/master/LICENSE)
 */
+window.addEventListener('DOMContentLoaded', event => {
+
+    const sidebarWrapper = document.getElementById('sidebar-wrapper');
+    let scrollToTopVisible = false;
+    // Closes the sidebar menu
+    const menuToggle = document.body.querySelector('.menu-toggle');
+    menuToggle.addEventListener('click', event => {
+        event.preventDefault();
+        sidebarWrapper.classList.toggle('active');
+        _toggleMenuIcon();
+        menuToggle.classList.toggle('active');
+    })
+
+    // Closes responsive menu when a scroll trigger link is clicked
+    var scrollTriggerList = [].slice.call(document.querySelectorAll('#sidebar-wrapper .js-scroll-trigger'));
+    scrollTriggerList.map(scrollTrigger => {
+        scrollTrigger.addEventListener('click', () => {
+            sidebarWrapper.classList.remove('active');
+            menuToggle.classList.remove('active');
+            _toggleMenuIcon();
+        })
+    });
+
+    function _toggleMenuIcon() {
+        const menuToggleBars = document.body.querySelector('.menu-toggle > .fa-bars');
+        const menuToggleTimes = document.body.querySelector('.menu-toggle > .fa-xmark');
+        if (menuToggleBars) {
+            menuToggleBars.classList.remove('fa-bars');
+            menuToggleBars.classList.add('fa-xmark');
+        }
+        if (menuToggleTimes) {
+            menuToggleTimes.classList.remove('fa-xmark');
+            menuToggleTimes.classList.add('fa-bars');
+        }
+    }
+
     // Scroll to top button appear
     document.addEventListener('scroll', () => {
         const scrollToTop = document.body.querySelector('.scroll-to-top');
@@ -18,6 +54,7 @@
             }
         }
     })
+})
 
 function fadeOut(el) {
     el.style.opacity = 1;
@@ -65,7 +102,7 @@ const animalDetails = {
     name: "貓",
     description: "你獨立、敏銳且充滿好奇心，擅長發現生活中的細節並享受自己的空間。",
     image:"assets/img/cat_hair_long.png"  
-      
+
   },
   dolphin: {
     name: "海豚",
@@ -163,12 +200,12 @@ document.getElementById('submitQuiz').addEventListener('click', () => {
   if (details) {
     document.getElementById('animalName').textContent = `你的動物型人格是：${details.name}`;
     document.getElementById('animalDescription').textContent = details.description;
-      
+
     // 設定圖片路徑和替代文字
   const animalImage = document.getElementById('animalImage');
   animalImage.src = details.image; // 設定圖片路徑
-    
-    
+
+
 
 
     // 顯示結果容器
@@ -179,4 +216,3 @@ document.getElementById('submitQuiz').addEventListener('click', () => {
     // 滾動到結果位置
     resultContainer.scrollIntoView({ behavior: 'smooth' });
   }
-});
