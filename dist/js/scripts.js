@@ -4,7 +4,6 @@
 * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-stylish-portfolio/blob/master/LICENSE)
 */
 window.addEventListener('DOMContentLoaded', event => {
-
     const sidebarWrapper = document.getElementById('sidebar-wrapper');
     let scrollToTopVisible = false;
     // Closes the sidebar menu
@@ -15,7 +14,6 @@ window.addEventListener('DOMContentLoaded', event => {
         _toggleMenuIcon();
         menuToggle.classList.toggle('active');
     })
-
     // Closes responsive menu when a scroll trigger link is clicked
     var scrollTriggerList = [].slice.call(document.querySelectorAll('#sidebar-wrapper .js-scroll-trigger'));
     scrollTriggerList.map(scrollTrigger => {
@@ -25,7 +23,6 @@ window.addEventListener('DOMContentLoaded', event => {
             _toggleMenuIcon();
         })
     });
-
     function _toggleMenuIcon() {
         const menuToggleBars = document.body.querySelector('.menu-toggle > .fa-bars');
         const menuToggleTimes = document.body.querySelector('.menu-toggle > .fa-xmark');
@@ -38,19 +35,12 @@ window.addEventListener('DOMContentLoaded', event => {
             menuToggleTimes.classList.add('fa-bars');
         }
     }
-
+ 
     // Scroll to top button appear
     document.addEventListener('scroll', () => {
         const scrollToTop = document.body.querySelector('.scroll-to-top');
         if (document.documentElement.scrollTop > 100) {
-            if (!scrollToTopVisible) {
-                fadeIn(scrollToTop);
-                scrollToTopVisible = true;
-            }
-        } else {
-            if (scrollToTopVisible) {
-                fadeOut(scrollToTop);
-                scrollToTopVisible = false;
+@@ -54,166 +17,166 @@
             }
         }
     })
@@ -216,3 +206,4 @@ document.getElementById('submitQuiz').addEventListener('click', () => {
     // 滾動到結果位置
     resultContainer.scrollIntoView({ behavior: 'smooth' });
   }
+});
