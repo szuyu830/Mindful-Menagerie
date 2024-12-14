@@ -28,14 +28,39 @@
             }
         </style>
          <script>
-             // 平滑滾動到特定區域的功能
-            document.addEventListener('DOMContentLoaded', () => {
-                const startJourneyButton = document.getElementById('start-journey'); // 獲取第一個按鈕
-                startJourneyButton.addEventListener('click', (event) => {
-                    event.preventDefault(); // 防止默認錨點跳轉
-                    document.querySelector('#story').scrollIntoView({ behavior: 'smooth' }); // 平滑滾動到 #story
-                });
+             // === 按下重新整理按鈕時保持定位到頂部 ===
+    window.onbeforeunload = () => {
+        sessionStorage.setItem('scrollPosition', 'top'); // 在 sessionStorage 中標記滾動位置
+    };
+
+    // === 在頁面加載時檢查 sessionStorage，確保頁面定位在頂部 ===
+    document.addEventListener('DOMContentLoaded', () => {
+        // 檢查是否有滾動位置標記
+        if (sessionStorage.getItem('scrollPosition') === 'top') {
+            window.scrollTo(0, 0); // 如果有標記，滾動到頂部
+            sessionStorage.removeItem('scrollPosition'); // 清除標記
+        }
+
+        // === 錨點按鈕點擊時，平滑滾動到目標區域 ===
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (event) => {
+                event.preventDefault(); // 阻止默認行為
+                const targetId = anchor.getAttribute('href').substring(1); // 獲取目標 ID
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' }); // 平滑滾動到目標
+                }
             });
+        });
+
+        // === 按下更新按鈕時，也滾動到頂部 ===
+        document.querySelectorAll('[data-update]').forEach(button => {
+            button.addEventListener('click', () => {
+                window.scrollTo(0, 0); // 按更新按鈕後滾動到頂部
+            });
+        });
+    });
         </script>
     </head>
     <body  >
