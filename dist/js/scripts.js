@@ -4,6 +4,7 @@
 * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-stylish-portfolio/blob/master/LICENSE)
 */
 window.addEventListener('DOMContentLoaded', event => {
+
     const sidebarWrapper = document.getElementById('sidebar-wrapper');
     let scrollToTopVisible = false;
     // Closes the sidebar menu
@@ -14,6 +15,7 @@ window.addEventListener('DOMContentLoaded', event => {
         _toggleMenuIcon();
         menuToggle.classList.toggle('active');
     })
+
     // Closes responsive menu when a scroll trigger link is clicked
     var scrollTriggerList = [].slice.call(document.querySelectorAll('#sidebar-wrapper .js-scroll-trigger'));
     scrollTriggerList.map(scrollTrigger => {
@@ -23,6 +25,7 @@ window.addEventListener('DOMContentLoaded', event => {
             _toggleMenuIcon();
         })
     });
+
     function _toggleMenuIcon() {
         const menuToggleBars = document.body.querySelector('.menu-toggle > .fa-bars');
         const menuToggleTimes = document.body.querySelector('.menu-toggle > .fa-xmark');
@@ -40,6 +43,14 @@ window.addEventListener('DOMContentLoaded', event => {
     document.addEventListener('scroll', () => {
         const scrollToTop = document.body.querySelector('.scroll-to-top');
         if (document.documentElement.scrollTop > 100) {
+            if (!scrollToTopVisible) {
+                fadeIn(scrollToTop);
+                scrollToTopVisible = true;
+            }
+        } else {
+            if (scrollToTopVisible) {
+                fadeOut(scrollToTop);
+                scrollToTopVisible = false;
             }
         }
     })
@@ -91,7 +102,7 @@ const animalDetails = {
     name: "貓",
     description: "你獨立、敏銳且充滿好奇心，擅長發現生活中的細節並享受自己的空間。",
     image:"assets/img/cat_hair_long.png"  
-
+      
   },
   dolphin: {
     name: "海豚",
@@ -189,12 +200,12 @@ document.getElementById('submitQuiz').addEventListener('click', () => {
   if (details) {
     document.getElementById('animalName').textContent = `你的動物型人格是：${details.name}`;
     document.getElementById('animalDescription').textContent = details.description;
-
+      
     // 設定圖片路徑和替代文字
   const animalImage = document.getElementById('animalImage');
   animalImage.src = details.image; // 設定圖片路徑
-
-
+    
+    
 
 
     // 顯示結果容器
