@@ -28,18 +28,12 @@
             }
         </style>
          <script>
-        // === 錨點按鈕點擊時，平滑滾動到目標區域 ===
+             // 平滑滾動到特定區域的功能
             document.addEventListener('DOMContentLoaded', () => {
-                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', (event) => {
-                        event.preventDefault(); // 阻止預設行為
-                        const targetId = anchor.getAttribute('href').substring(1); // 獲取目標 ID
-                        const targetElement = document.getElementById(targetId);
-
-                        if (targetElement) {
-                            targetElement.scrollIntoView({ behavior: 'smooth' }); // 平滑滾動
-                        }
-                    });
+                const startJourneyButton = document.getElementById('start-journey'); // 獲取第一個按鈕
+                startJourneyButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // 防止默認錨點跳轉
+                    document.querySelector('#story').scrollIntoView({ behavior: 'smooth' }); // 平滑滾動到 #story
                 });
             });
         </script>
