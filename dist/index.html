@@ -16,6 +16,17 @@
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <style>
+            /* 完全隱藏 iframe 的樣式 */
+            #youtube-music {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+                width: 0;
+                height: 0;
+                border: none;
+            }
+        </style>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -24,7 +35,8 @@
             <div class="container px-4 px-lg-5 text-center">
                 <h1 class="mb-1">   </h1>
                 <h3 class="mb-5"><em>   </em></h3>
-                <a class="btn btn-light btn-xl" href="#story">Start</a>
+                <!-- 按鈕部分：現在包括音樂播放功能 -->
+                <a class="btn btn-light btn-xl" href="#story" id="start-journey">Start</a>
             </div>
         </header>
 <!-- About-->
@@ -489,6 +501,34 @@
         </div>
     </div>   
 </section> 
+            
+        <!-- 隱藏的 YouTube 音樂播放器 -->
+        <iframe
+            id="youtube-music"
+            src="https://www.youtube.com/embed/8F0HKje1vOE?autoplay=1&loop=1&playlist=8F0HKje1vOE"
+            frameborder="0"
+            allow="autoplay"
+            allowfullscreen>
+        </iframe>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+
+        <!-- 音樂播放控制的 JavaScript -->
+        <script>
+            const journeyButton = document.getElementById('start-journey');
+            const iframe = document.getElementById('youtube-music');
+
+            // 當按鈕被點擊時
+            journeyButton.addEventListener('click', (event) => {
+                event.preventDefault(); // 阻止默認滾動行為
+                iframe.src += '&autoplay=1'; // 開始播放音樂
+                journeyButton.style.pointerEvents = 'none'; // 禁止再次點擊
+            });
+        </script>
+            
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
