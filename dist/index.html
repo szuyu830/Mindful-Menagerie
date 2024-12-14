@@ -32,6 +32,13 @@
             window.addEventListener('load', () => {
                 window.scrollTo(0, 0);
             });
+              document.addEventListener('DOMContentLoaded', () => {
+                const startJourneyButton = document.getElementById('start-journey'); // 獲取第一個按鈕
+                startJourneyButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // 防止默認錨點跳轉
+                    document.querySelector('#story').scrollIntoView({ behavior: 'smooth' }); // 平滑滾動到 #story
+                });
+            });
         </script>
     </head>
     <body  >
