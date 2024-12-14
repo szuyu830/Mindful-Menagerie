@@ -505,27 +505,30 @@
         <!-- 隱藏的 YouTube 音樂播放器 -->
         <iframe
             id="youtube-music"
-            src="https://www.youtube.com/embed/8F0HKje1vOE?autoplay=1&loop=1&playlist=8F0HKje1vOE"
+            src=""
             frameborder="0"
             allow="autoplay"
             allowfullscreen>
         </iframe>
 
-        <!-- Bootstrap core JS-->
+        <!-- Bootstrap core JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
 
         <!-- 音樂播放控制的 JavaScript -->
         <script>
             const journeyButton = document.getElementById('start-journey');
             const iframe = document.getElementById('youtube-music');
 
-            // 當按鈕被點擊時
+            // 當按鈕被點擊時，開始播放音樂
             journeyButton.addEventListener('click', (event) => {
                 event.preventDefault(); // 阻止默認滾動行為
-                iframe.src += '&autoplay=1'; // 開始播放音樂
-                journeyButton.style.pointerEvents = 'none'; // 禁止再次點擊
+
+                // 動態設置 iframe 的 src 屬性，觸發播放
+                iframe.src = "https://www.youtube.com/embed/8F0HKje1vOE?autoplay=1&loop=1&playlist=8F0HKje1vOE";
+
+                // 禁用按鈕，防止重複點擊
+                journeyButton.style.pointerEvents = "none";
+                journeyButton.textContent = "音樂播放中...";
             });
         </script>
             
