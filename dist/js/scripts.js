@@ -40,7 +40,6 @@ window.addEventListener('DOMContentLoaded', event => {
     document.addEventListener('scroll', () => {
         const scrollToTop = document.body.querySelector('.scroll-to-top');
         if (document.documentElement.scrollTop > 100) {
-@@ -54,166 +17,166 @@
             }
         }
     })
