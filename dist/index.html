@@ -28,7 +28,12 @@
             }
         </style>
          <script>
-          // 在頁面載入時強制滾動到頂部
+            // 跳轉到下一頁的功能
+            function goToNextPage() {
+                // 跳轉目標頁面，例如 page2.html
+                window.location.href = 'page2.html';
+            }
+             // 在頁面載入時強制滾動到頂部
             window.addEventListener('load', () => {
                 window.scrollTo(0, 0);
              // 平滑滾動功能
