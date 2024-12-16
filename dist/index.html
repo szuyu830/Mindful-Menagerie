@@ -28,7 +28,9 @@
             }
         </style>
          <script>
-        
+          // 在頁面載入時強制滾動到頂部
+            window.addEventListener('load', () => {
+                window.scrollTo(0, 0);
              // 平滑滾動功能
             document.addEventListener('DOMContentLoaded', () => {
                 const startJourneyButton = document.getElementById('start-journey');
@@ -47,7 +49,7 @@
                 <h1 class="mb-1">   </h1>
                 <h3 class="mb-5"><em>   </em></h3>
                 <!-- 按鈕部分：現在包括音樂播放功能 -->
-                <a class="btn btn-light btn-xl" href="#story" id="story">Start</a>
+                <a class="btn btn-light btn-xl" href="#story" id="start-journey">Start</a>
             </div>
         </header>
 <!-- About-->
